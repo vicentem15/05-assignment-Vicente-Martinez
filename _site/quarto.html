@@ -9,7 +9,7 @@
 <meta name="author" content="Vicente Martinez">
 <meta name="dcterms.date" content="2026-02-23">
 
-<title>Assignment 05</title>
+<title>Exploring World Development Indicators</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -143,7 +143,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Assignment 05</h1>
+<h1 class="title">Exploring World Development Indicators</h1>
 </div>
 
 
@@ -177,7 +177,7 @@ div.csl-indent {
 <section id="exploratory-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-analysis">Exploratory Analysis</h2>
 <p>Data source: World Bank World Development Indicators (WDI) <span class="citation" data-cites="worldbank2026">(<a href="#ref-worldbank2026" role="doc-biblioref">World Bank 2026</a>)</span>.</p>
-<div id="2f7e11f1" class="cell" data-execution_count="1">
+<div id="b0d2d652" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -218,7 +218,7 @@ Figure&nbsp;1: Plot of GDP Growth Rate Distribution
 </div>
 </div>
 </div>
-<div id="7e427f1d" class="cell" data-execution_count="3">
+<div id="f124635c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_plot2 <span class="op">=</span> data.dropna(subset<span class="op">=</span>[<span class="st">'measles_immunisation_rate'</span>,<span class="st">'gdp_per_capita'</span>])</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> data_plot2[<span class="st">'gdp_per_capita'</span>].corr(data_plot2[<span class="st">'measles_immunisation_rate'</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Correlation: </span><span class="sc">{</span>correlation<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
@@ -243,7 +243,7 @@ Figure&nbsp;2: Relationship between GDP per Capita and Measles Immunisation Rate
 </div>
 </div>
 </div>
-<div id="22ceabdd" class="cell" data-execution_count="5">
+<div id="fd6886d8" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_plot3 <span class="op">=</span> data.dropna(subset<span class="op">=</span>[<span class="st">'life_expectancy'</span>,<span class="st">'gdp_per_capita'</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> data_plot3[<span class="st">'gdp_per_capita'</span>].corr(data_plot3[<span class="st">'life_expectancy'</span>])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Correlation: </span><span class="sc">{</span>correlation<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
@@ -347,12 +347,178 @@ Table&nbsp;1: Table of Key Statistics
 <section id="analysis" class="level2">
 <h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
 <p>From the data gathered from the World Bank <span class="citation" data-cites="worldbank2026">(<a href="#ref-worldbank2026" role="doc-biblioref">World Bank 2026</a>)</span>, I was able to perfrom a few analyses.</p>
-<p>As shown in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;1</a>, the average GDP growth rate across countries is 4.37%, with substantial dispersion given the standard deviation of 6.63. The minimum value of -28.76% highlights extreme economic contractions in some countries.</p>
+<p>As shown in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;2</a>, the average GDP growth rate across countries is 4.37%, with substantial dispersion given the standard deviation of 6.63. The minimum value of -28.76% highlights extreme economic contractions in some countries.</p>
 <p>The distribution of GDP growth rates is illustrated in <a href="#fig-gdp-dist" class="quarto-xref">Figure&nbsp;1</a>, which shows a right-skewed distribution with several high-growth outliers. The histogram confirms that most countries cluster between 0% and 10% growth.</p>
-<p>The relationship between GDP per capita and measles immunisation is presented in <a href="#fig-gdp-measles-scatter" class="quarto-xref">Figure&nbsp;2</a>. As reported in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;1</a>, the correlation is 0.314, indicating a moderate positive association.</p>
-<p>In contrast, <a href="#fig-gdp-life-expectancy" class="quarto-xref">Figure&nbsp;3</a> shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see <a href="#tbl-stats" class="quarto-xref">Table&nbsp;1</a>) suggests a substantially stronger link between income levels and longevity outcomes. This follows what has previously been established as seen in Preston’s seminal work <span class="citation" data-cites="preston1975">(<a href="#ref-preston1975" role="doc-biblioref">Preston 1975</a>)</span> and prior research showing that higher income levels are strongly linked to lower mortality and improved health outcomes <span class="citation" data-cites="cutler2006">(<a href="#ref-cutler2006" role="doc-biblioref">Cutler, Deaton, and Lleras-Muney 2006</a>)</span>.</p>
+<p>The relationship between GDP per capita and measles immunisation is presented in <a href="#fig-gdp-measles-scatter" class="quarto-xref">Figure&nbsp;2</a>. As reported in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;2</a>, the correlation is 0.314, indicating a moderate positive association.</p>
+<p>In contrast, <a href="#fig-gdp-life-expectancy" class="quarto-xref">Figure&nbsp;3</a> shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see <a href="#tbl-stats" class="quarto-xref">Table&nbsp;2</a>) suggests a substantially stronger link between income levels and longevity outcomes. This follows what has previously been established as seen in Preston’s seminal work <span class="citation" data-cites="preston1975">(<a href="#ref-preston1975" role="doc-biblioref">Preston 1975</a>)</span> and prior research showing that higher income levels are strongly linked to lower mortality and improved health outcomes <span class="citation" data-cites="cutler2006">(<a href="#ref-cutler2006" role="doc-biblioref">Cutler, Deaton, and Lleras-Muney 2006</a>)</span>.</p>
 
 
+</section>
+<section id="starting-off-with-gdp-growth-rate" class="level2">
+<h2 class="anchored" data-anchor-id="starting-off-with-gdp-growth-rate">Starting off with GDP Growth Rate</h2>
+<ul>
+<li>Data source: World Bank World Development Indicators (WDI) <span class="citation" data-cites="worldbank2026">(<a href="#ref-worldbank2026" role="doc-biblioref">World Bank 2026</a>)</span>.</li>
+</ul>
+<pre class="{python}"><code>#| eval: true
+#| echo: true
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+data = pd.read_csv('wdi.csv')
+
+print("\n=== GDP GROWTH RATE ===")
+print(data['gdp_growth_rate'].describe())
+print(f"Observations: {len(data)}")
+print(f"Proportion of Increasing GDP: {(data['gdp_growth_rate'].dropna() &gt; 0).sum()/len(data)}")</code></pre>
+<pre class="{python}"><code>#| eval: true
+#| echo: false
+#| fig-cap: "Plot of GDP Growth Rate Distribution"
+#| label: fig-gdp-dist
+plt.hist(data['gdp_growth_rate'].dropna(), bins=30, color='steelblue', edgecolor='black', alpha=0.7)
+plt.xlabel('GDP Growth Rate (%)')
+plt.ylabel('Frequency')
+plt.title('Distribution of GDP Growth Rate')
+plt.axvline(data['gdp_growth_rate'].mean(), color='red', linestyle='--', label=f"Mean: {data['gdp_growth_rate'].mean():.2f}")
+plt.show()</code></pre>
+</section>
+<section id="measles-immunization-vs-gdp-per-capita" class="level2">
+<h2 class="anchored" data-anchor-id="measles-immunization-vs-gdp-per-capita">Measles Immunization vs GDP Per Capita</h2>
+<pre class="{python}"><code>#| eval: true
+#| echo: true
+
+data_plot2 = data.dropna(subset=['measles_immunisation_rate','gdp_per_capita'])
+correlation = data_plot2['gdp_per_capita'].corr(data_plot2['measles_immunisation_rate'])
+print(f"\nCorrelation: {correlation:.3f}")
+print(f"Observations: {len(data_plot2)}")</code></pre>
+<pre class="{python}"><code>#| eval: true
+#| echo: false
+#| fig-cap: "Relationship between GDP per Capita and Measles Immunisation Rate"
+#| label: fig-gdp-measles-scatter
+
+# Create scatter plot
+plt.figure(figsize=(10, 6))
+plt.scatter(data_plot2['gdp_per_capita'], data_plot2['measles_immunisation_rate'], 
+            alpha=0.6, s=80, color='steelblue', edgecolors='black', linewidth=0.5)
+
+plt.xlabel('GDP per Capita ($)')
+plt.ylabel('Measles Immunisation Rate (%)')
+plt.title('GDP per Capita vs Measles Immunisation Rate')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+</code></pre>
+</section>
+<section id="life-expectancy-vs-gdp-per-capita" class="level2">
+<h2 class="anchored" data-anchor-id="life-expectancy-vs-gdp-per-capita">Life Expectancy Vs GDP Per Capita</h2>
+<pre class="{python}"><code>#| eval: true
+#| echo: true
+data_plot3 = data.dropna(subset=['life_expectancy','gdp_per_capita'])
+correlation = data_plot3['gdp_per_capita'].corr(data_plot3['life_expectancy'])
+print(f"\nCorrelation: {correlation:.3f}")
+print(f"Observations: {len(data_plot3)}")</code></pre>
+<pre class="{python}"><code>#| eval: true
+#| echo: false
+#| fig-cap: "Relationship between GDP per Capita and Life Expectancy"
+#| label: fig-gdp-life-expectancy
+
+# Create scatter plot
+plt.figure(figsize=(10, 6))
+plt.scatter(data_plot3['gdp_per_capita'], data_plot3['life_expectancy'], 
+            alpha=0.6, s=80, color='steelblue', edgecolors='black', linewidth=0.5)
+
+plt.xlabel('GDP per Capita ($)')
+plt.ylabel('Life Expectancy (years)')
+plt.title('GDP per Capita vs Life Expectancy')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+</code></pre>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<div id="tbl-stats" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Table of Key Statistics
+</figcaption>
+<div aria-describedby="tbl-stats-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 43%">
+<col style="width: 12%">
+<col style="width: 5%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 5%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Observations</th>
+<th>Mean</th>
+<th>Std. Dev.</th>
+<th>Min</th>
+<th>Median</th>
+<th>Max</th>
+<th>Correlation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GDP Growth Rate (%)</td>
+<td>202</td>
+<td>4.37</td>
+<td>6.63</td>
+<td>-28.76</td>
+<td>4.20</td>
+<td>63.44</td>
+<td>—</td>
+</tr>
+<tr class="even">
+<td>Proportion of Countries with Positive GDP</td>
+<td>217</td>
+<td>0.843</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr class="odd">
+<td>GDP per Capita vs Immunisation Rate</td>
+<td>186</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>0.314</td>
+</tr>
+<tr class="even">
+<td>GDP per Capita vs Life Expectancy</td>
+<td>197</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>—</td>
+<td>0.639</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="conclusion-of-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-of-analysis">Conclusion of Analysis</h2>
+<p>As shown in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;2</a>, the average GDP growth rate across countries is 4.37%, with substantial dispersion given the standard deviation of 6.63. The minimum value of -28.76% highlights extreme economic contractions in some countries.</p>
+<p>The distribution of GDP growth rates is illustrated in <a href="#fig-gdp-dist" class="quarto-xref">Figure&nbsp;1</a>, which shows a right-skewed distribution with several high-growth outliers. The histogram confirms that most countries cluster between 0% and 10% growth.</p>
+<p>The relationship between GDP per capita and measles immunisation is presented in <a href="#fig-gdp-measles-scatter" class="quarto-xref">Figure&nbsp;2</a>. As reported in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;2</a>, the correlation is 0.314, indicating a moderate positive association.</p>
+<p>In contrast, <a href="#fig-gdp-life-expectancy" class="quarto-xref">Figure&nbsp;3</a> shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see <a href="#tbl-stats" class="quarto-xref">Table&nbsp;2</a>) suggests a substantially stronger link between income levels and longevity outcomes.</p>
 
 </section>
 </section>
@@ -441,7 +607,7 @@ World Bank. 2026. <span>“World Development Indicators.”</span> <a href="http
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/vicentem15\.github\.io\/05-assignment-Vicente-Martinez\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

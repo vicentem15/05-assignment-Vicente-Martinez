@@ -9,7 +9,7 @@
 <meta name="author" content="Vicente Martinez">
 <meta name="dcterms.date" content="2026-02-23">
 
-<title>Assignment 05 – WDI Assignment</title>
+<title>Assignment 05</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -81,7 +81,6 @@ div.csl-indent {
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
 <script src="site_libs/quarto-search/fuse.min.js"></script>
@@ -97,13 +96,13 @@ div.csl-indent {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-5b4ad623e5705c0698d39aec6f10cf02.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-ff63373b1067ca6f91cf1456aa1f00a2.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
-  "location": "navbar",
+  "location": "sidebar",
   "copy-button": false,
   "collapse-after": 3,
-  "panel-placement": "end",
-  "type": "overlay",
+  "panel-placement": "start",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
@@ -129,40 +128,11 @@ div.csl-indent {
 
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
-      <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">WDI Assignment</span>
-    </a>
-  </div>
-            <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-  <span class="navbar-toggler-icon"></span>
-</button>
-          <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="./slides.html"> 
-<span class="menu-text">Slides</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="./quarto.html" aria-current="page"> 
-<span class="menu-text">Report</span></a>
-  </li>  
-</ul>
-          </div> <!-- /navcollapse -->
-            <div class="quarto-navbar-tools">
-</div>
-      </div> <!-- /container-fluid -->
-    </nav>
-</header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
@@ -207,7 +177,7 @@ div.csl-indent {
 <section id="exploratory-analysis" class="level2">
 <h2 class="anchored" data-anchor-id="exploratory-analysis">Exploratory Analysis</h2>
 <p>Data source: World Bank World Development Indicators (WDI) <span class="citation" data-cites="worldbank2026">(<a href="#ref-worldbank2026" role="doc-biblioref">World Bank 2026</a>)</span>.</p>
-<div id="d4c51218" class="cell" data-execution_count="1">
+<div id="23de4ecb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
@@ -248,7 +218,7 @@ Figure&nbsp;1: Plot of GDP Growth Rate Distribution
 </div>
 </div>
 </div>
-<div id="05490968" class="cell" data-execution_count="3">
+<div id="e84e2dfa" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>data_plot2 <span class="op">=</span> data.dropna(subset<span class="op">=</span>[<span class="st">'measles_immunisation_rate'</span>,<span class="st">'gdp_per_capita'</span>])</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> data_plot2[<span class="st">'gdp_per_capita'</span>].corr(data_plot2[<span class="st">'measles_immunisation_rate'</span>])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Correlation: </span><span class="sc">{</span>correlation<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
@@ -273,7 +243,7 @@ Figure&nbsp;2: Relationship between GDP per Capita and Measles Immunisation Rate
 </div>
 </div>
 </div>
-<div id="ec2846d2" class="cell" data-execution_count="5">
+<div id="c0ccbbc2" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>data_plot3 <span class="op">=</span> data.dropna(subset<span class="op">=</span>[<span class="st">'life_expectancy'</span>,<span class="st">'gdp_per_capita'</span>])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>correlation <span class="op">=</span> data_plot3[<span class="st">'gdp_per_capita'</span>].corr(data_plot3[<span class="st">'life_expectancy'</span>])</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Correlation: </span><span class="sc">{</span>correlation<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
@@ -380,7 +350,7 @@ Table&nbsp;1: Table of Key Statistics
 <p>As shown in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;1</a>, the average GDP growth rate across countries is 4.37%, with substantial dispersion given the standard deviation of 6.63. The minimum value of -28.76% highlights extreme economic contractions in some countries.</p>
 <p>The distribution of GDP growth rates is illustrated in <a href="#fig-gdp-dist" class="quarto-xref">Figure&nbsp;1</a>, which shows a right-skewed distribution with several high-growth outliers. The histogram confirms that most countries cluster between 0% and 10% growth.</p>
 <p>The relationship between GDP per capita and measles immunisation is presented in <a href="#fig-gdp-measles-scatter" class="quarto-xref">Figure&nbsp;2</a>. As reported in <a href="#tbl-stats" class="quarto-xref">Table&nbsp;1</a>, the correlation is 0.314, indicating a moderate positive association.</p>
-<p>In contrast, <a href="#fig-gdp-life-expectancy" class="quarto-xref">Figure&nbsp;3</a> shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see <a href="#tbl-stats" class="quarto-xref">Table&nbsp;1</a>) suggests a substantially stronger link between income levels and longevity outcomes. This follows what has previously been established as seen in Preston’s seminal work <span class="citation" data-cites="preston1975">(<a href="#ref-preston1975" role="doc-biblioref">Preston 1975</a>)</span>.</p>
+<p>In contrast, <a href="#fig-gdp-life-expectancy" class="quarto-xref">Figure&nbsp;3</a> shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see <a href="#tbl-stats" class="quarto-xref">Table&nbsp;1</a>) suggests a substantially stronger link between income levels and longevity outcomes. This follows what has previously been established as seen in Preston’s seminal work <span class="citation" data-cites="preston1975">(<a href="#ref-preston1975" role="doc-biblioref">Preston 1975</a>)</span> and prior research showing that higher income levels are strongly linked to lower mortality and improved health outcomes <span class="citation" data-cites="cutler2006">(<a href="#ref-cutler2006" role="doc-biblioref">Cutler, Deaton, and Lleras-Muney 2006</a>)</span>.</p>
 
 
 
@@ -388,6 +358,9 @@ Table&nbsp;1: Table of Key Statistics
 </section>
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-cutler2006" class="csl-entry" role="listitem">
+Cutler, David M., Angus Deaton, and Adriana Lleras-Muney. 2006. <span>“The Determinants of Mortality.”</span> <em>Journal of Economic Perspectives</em> 20 (3): 97–120. <a href="https://doi.org/10.1257/jep.20.3.97">https://doi.org/10.1257/jep.20.3.97</a>.
+</div>
 <div id="ref-preston1975" class="csl-entry" role="listitem">
 Preston, Samuel H. 1975. <span>“The Changing Relation Between Mortality and Level of Economic Development.”</span> <em>Population Studies</em> 29 (2): 231–48.
 </div>

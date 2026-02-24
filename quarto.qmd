@@ -115,4 +115,4 @@ The distribution of GDP growth rates is illustrated in @fig-gdp-dist, which show
 
 The relationship between GDP per capita and measles immunisation is presented in @fig-gdp-measles-scatter. As reported in @tbl-stats, the correlation is 0.314, indicating a moderate positive association. 
 
-In contrast, @fig-gdp-life-expectancy shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see @tbl-stats) suggests a substantially stronger link between income levels and longevity outcomes. This follows what has previously been established as seen in Preston's seminal work [@preston1975].
+In contrast, @fig-gdp-life-expectancy shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see @tbl-stats) suggests a substantially stronger link between income levels and longevity outcomes. This follows what has previously been established as seen in Preston's seminal work [@preston1975] and prior research showing that higher income levels are strongly linked to lower mortality and improved health outcomes [@cutler2006].

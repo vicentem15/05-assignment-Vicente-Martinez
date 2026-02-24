@@ -1,16 +1,3 @@
 project:
   type: website
   output-dir: _site
-
-website:
-  title: "WDI Assignment"
-  navbar:
-    left:
-      - text: Slides
-        href: slides.html
-      - text: Report
-        href: quarto.html
-
-format:
-  html:
-    theme: cosmo

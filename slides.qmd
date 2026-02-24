@@ -1,0 +1,124 @@
+---
+title: "Exploring World Development Indicators"
+author: "Vicente Martinez"
+format:
+  revealjs:
+    embed-resources: true
+    scrollable: true
+    smaller: true
+    theme: night
+    transition: fade
+bibliography: references.bib
+---
+## Starting off with GDP Growth Rate 
+
+
+* Data source: World Bank World Development Indicators (WDI) [@worldbank2026].
+
+```{python}
+#| eval: true
+#| echo: true
+import pandas as pd
+import matplotlib.pyplot as plt
+import numpy as np
+
+data = pd.read_csv('wdi.csv')
+
+print("\n=== GDP GROWTH RATE ===")
+print(data['gdp_growth_rate'].describe())
+print(f"Observations: {len(data)}")
+print(f"Proportion of Increasing GDP: {(data['gdp_growth_rate'].dropna() > 0).sum()/len(data)}")
+```
+```{python}
+#| eval: true
+#| echo: false
+#| fig-cap: "Plot of GDP Growth Rate Distribution"
+#| label: fig-gdp-dist
+plt.hist(data['gdp_growth_rate'].dropna(), bins=30, color='steelblue', edgecolor='black', alpha=0.7)
+plt.xlabel('GDP Growth Rate (%)')
+plt.ylabel('Frequency')
+plt.title('Distribution of GDP Growth Rate')
+plt.axvline(data['gdp_growth_rate'].mean(), color='red', linestyle='--', label=f"Mean: {data['gdp_growth_rate'].mean():.2f}")
+plt.show()
+```
+
+
+## Measles Immunization vs GDP Per Capita
+```{python}
+#| eval: true
+#| echo: true
+
+data_plot2 = data.dropna(subset=['measles_immunisation_rate','gdp_per_capita'])
+correlation = data_plot2['gdp_per_capita'].corr(data_plot2['measles_immunisation_rate'])
+print(f"\nCorrelation: {correlation:.3f}")
+print(f"Observations: {len(data_plot2)}")
+```
+```{python}
+#| eval: true
+#| echo: false
+#| fig-cap: "Relationship between GDP per Capita and Measles Immunisation Rate"
+#| label: fig-gdp-measles-scatter
+
+# Create scatter plot
+plt.figure(figsize=(10, 6))
+plt.scatter(data_plot2['gdp_per_capita'], data_plot2['measles_immunisation_rate'], 
+            alpha=0.6, s=80, color='steelblue', edgecolors='black', linewidth=0.5)
+
+plt.xlabel('GDP per Capita ($)')
+plt.ylabel('Measles Immunisation Rate (%)')
+plt.title('GDP per Capita vs Measles Immunisation Rate')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+```
+
+## Life Expectancy Vs GDP Per Capita
+```{python}
+#| eval: true
+#| echo: true
+data_plot3 = data.dropna(subset=['life_expectancy','gdp_per_capita'])
+correlation = data_plot3['gdp_per_capita'].corr(data_plot3['life_expectancy'])
+print(f"\nCorrelation: {correlation:.3f}")
+print(f"Observations: {len(data_plot3)}")
+```
+
+```{python}
+#| eval: true
+#| echo: false
+#| fig-cap: "Relationship between GDP per Capita and Life Expectancy"
+#| label: fig-gdp-life-expectancy
+
+# Create scatter plot
+plt.figure(figsize=(10, 6))
+plt.scatter(data_plot3['gdp_per_capita'], data_plot3['life_expectancy'], 
+            alpha=0.6, s=80, color='steelblue', edgecolors='black', linewidth=0.5)
+
+plt.xlabel('GDP per Capita ($)')
+plt.ylabel('Life Expectancy (years)')
+plt.title('GDP per Capita vs Life Expectancy')
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.show()
+
+```
+
+## Summary
+| Variable                                  | Observations | Mean  | Std. Dev. | Min    | Median | Max   | Correlation |
+| ----------------------------------------- | ------------ | ----- | --------- | ------ | ------ | ----- | ----------- |
+| GDP Growth Rate (%)                       | 202          | 4.37  | 6.63      | -28.76 | 4.20   | 63.44 | —           |
+| Proportion of Countries with Positive GDP | 217          | 0.843 | —         | —      | —      | —     | —           |
+| GDP per Capita vs Immunisation Rate       | 186          | —     | —         | —      | —      | —     | 0.314       |
+| GDP per Capita vs Life Expectancy         | 197          | —     | —         | —      | —      | —     | 0.639       |
+: Table of Key Statistics {#tbl-stats}
+
+
+## Conclusion of Analysis
+
+As shown in @tbl-stats, the average GDP growth rate across countries is 4.37%, with substantial dispersion given the standard deviation of 6.63. The minimum value of -28.76% highlights extreme economic contractions in some countries.
+
+The distribution of GDP growth rates is illustrated in @fig-gdp-dist, which shows a right-skewed distribution with several high-growth outliers. The histogram confirms that most countries cluster between 0% and 10% growth.
+
+The relationship between GDP per capita and measles immunisation is presented in @fig-gdp-measles-scatter. As reported in @tbl-stats, the correlation is 0.314, indicating a moderate positive association.
+
+In contrast, @fig-gdp-life-expectancy shows a stronger relationship between GDP per capita and life expectancy. The correlation of 0.639 (see @tbl-stats) suggests a substantially stronger link between income levels and longevity outcomes.
